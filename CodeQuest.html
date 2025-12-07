@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest - Gamified Coding Platform</title>
+    <link rel="stylesheet" href="game2.css">
+</head>
+<body>
+    <!-- XP / LEVEL SYSTEM HEADER -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="brand">
+                <h1>⚡ CodeQuest</h1>
+                <p class="tagline">Level up your coding skills</p>
+            </div>
+            <div class="level-system">
+                <div class="level-badge">
+                    <span class="level-label">Level</span>
+                    <span class="level-number" id="levelDisplay">1</span>
+                </div>
+                <div class="xp-container">
+                    <div class="xp-text">
+                        <span id="currentXP">0</span> / <span id="requiredXP">100</span> XP
+                    </div>
+                    <div class="xp-bar-bg">
+                        <div class="xp-bar-fill" id="xpBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-container">
+        <!-- LEFT HALF - EDITOR AREA -->
+        <section class="editor-section">
+            <!-- LANGUAGE TABS -->
+            <div class="tabs">
+                <button class="tab active" data-lang="html">HTML</button>
+                <button class="tab" data-lang="css">CSS</button>
+                <button class="tab" data-lang="js">JavaScript</button>
+            </div>
+
+            <!-- CODE EDITOR -->
+            <div class="editor-container">
+                <textarea class="code-editor active" id="htmlEditor" spellcheck="false" placeholder="Write your HTML here..."></textarea>
+                <textarea class="code-editor" id="cssEditor" spellcheck="false" placeholder="Write your CSS here..."></textarea>
+                <textarea class="code-editor" id="jsEditor" spellcheck="false" placeholder="Write your JavaScript here..."></textarea>
+            </div>
+
+            <!-- CONTROL BUTTONS -->
+            <div class="controls">
+                <button class="btn btn-primary" id="runBtn">▶ Run</button>
+                <button class="btn btn-secondary" id="clearBtn">🗑 Clear</button>
+                <button class="btn btn-secondary" id="beautifyBtn">✨ Beautify</button>
+                <button class="btn btn-warning" id="saveBtn">💾 Save</button>
+                <button class="btn btn-danger" id="endSessionBtn">⏹ End Session</button>
+            </div>
+
+            <!-- SAVED PROJECTS AREA -->
+            <div class="saved-projects-section">
+                <h3>📂 Saved Projects</h3>
+                <div class="projects-scroll" id="projectsList">
+                    <p class="no-projects">No saved projects yet. Click Save to create one!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT HALF - LIVE PREVIEW -->
+        <section class="preview-section">
+            <div class="preview-header">
+                <h3>🖥 Live Preview</h3>
+                <button class="btn-small" id="clearPreviewBtn">Clear Preview</button>
+            </div>
+            <div class="preview-container">
+                <iframe id="previewFrame" sandbox="allow-scripts"></iframe>
+            </div>
+            
+            <!-- CONSOLE / ERROR DISPLAY -->
+            <div class="console-container">
+                <div class="console-header">
+                    <span>📟 Console</span>
+                    <button class="btn-small" id="clearConsoleBtn">Clear</button>
+                </div>
+                <div class="console-output" id="consoleOutput">
+                    <p class="console-info">Console ready. Run your code to see output.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="game2.js"></script>
+</body>
+</html>
