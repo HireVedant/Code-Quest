@@ -1,6 +1,4 @@
-/* ============================================
-   GLOBAL STYLES & RESET
-   ============================================ */
+//overall css
 * {
     margin: 0;
     padding: 0;
@@ -17,9 +15,7 @@ body {
     flex-direction: column;
 }
 
-/* ============================================
-   TOP BAR - XP & LEVEL SYSTEM
-   ============================================ */
+//Top bar containing Level and XP
 .top-bar {
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     padding: 15px 20px;
@@ -102,9 +98,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
 }
 
-/* ============================================
-   MAIN CONTAINER - SPLIT LAYOUT
-   ============================================ */
+//Main Container
 .main-container {
     display: flex;
     flex: 1;
@@ -113,9 +107,7 @@ body {
     padding: 10px;
 }
 
-/* ============================================
-   LEFT HALF - EDITOR SECTION
-   ============================================ */
+// Left Half containing Code Writing Area
 .editor-section {
     flex: 1;
     display: flex;
@@ -127,7 +119,7 @@ body {
     overflow: hidden;
 }
 
-/* TABS */
+//tabs
 .tabs {
     display: flex;
     gap: 8px;
@@ -159,7 +151,7 @@ body {
     box-shadow: 0 4px 12px rgba(106, 17, 203, 0.5);
 }
 
-/* CODE EDITOR */
+// Code Editor Selector
 .editor-container {
     position: relative;
     flex: 1;
@@ -194,7 +186,7 @@ body {
     color: #555566;
 }
 
-/* CONTROL BUTTONS */
+//Control Buttons
 .controls {
     display: flex;
     gap: 10px;
@@ -255,7 +247,7 @@ body {
     box-shadow: 0 4px 12px rgba(255, 68, 68, 0.5);
 }
 
-/* SAVED PROJECTS SECTION */
+//Saved Project Id
 .saved-projects-section {
     border-top: 2px solid #3a3a52;
     padding-top: 15px;
@@ -363,9 +355,7 @@ body {
     background: #ff6666;
 }
 
-/* ============================================
-   RIGHT HALF - PREVIEW SECTION
-   ============================================ */
+//Right Half showing Output/Live preview
 .preview-section {
     flex: 1;
     display: flex;
@@ -419,7 +409,7 @@ body {
     background: #ffffff;
 }
 
-/* CONSOLE SECTION */
+//console display
 .console-container {
     flex: 1;
     background: #1e1e2e;
@@ -486,9 +476,7 @@ body {
     margin: 4px 0;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
+//responsive design
 @media (max-width: 1200px) {
     .main-container {
         flex-direction: column;
@@ -499,3 +487,4 @@ body {
         max-height: 50vh;
     }
 }
+
