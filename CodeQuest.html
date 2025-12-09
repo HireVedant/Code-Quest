@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="game2.css">
 </head>
 <body>
-    <!-- XP / LEVEL SYSTEM HEADER -->
+   //XP / LEVEL SYSTEM 
     <header class="top-bar">
         <div class="container">
             <div class="brand">
@@ -31,25 +31,25 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
+    // MAIN CONTENT AREA
     <main class="main-container">
-        <!-- LEFT HALF - EDITOR AREA -->
+        // Left Half containing Code Writing Area
         <section class="editor-section">
-            <!-- LANGUAGE TABS -->
+            //Html Css Js tab
             <div class="tabs">
                 <button class="tab active" data-lang="html">HTML</button>
                 <button class="tab" data-lang="css">CSS</button>
                 <button class="tab" data-lang="js">JavaScript</button>
             </div>
 
-            <!-- CODE EDITOR -->
+            // Code Editor Selector 
             <div class="editor-container">
                 <textarea class="code-editor active" id="htmlEditor" spellcheck="false" placeholder="Write your HTML here..."></textarea>
                 <textarea class="code-editor" id="cssEditor" spellcheck="false" placeholder="Write your CSS here..."></textarea>
                 <textarea class="code-editor" id="jsEditor" spellcheck="false" placeholder="Write your JavaScript here..."></textarea>
             </div>
 
-            <!-- CONTROL BUTTONS -->
+            //Control Buttons
             <div class="controls">
                 <button class="btn btn-primary" id="runBtn">▶ Run</button>
                 <button class="btn btn-secondary" id="clearBtn">🗑 Clear</button>
@@ -58,7 +58,7 @@
                 <button class="btn btn-danger" id="endSessionBtn">⏹ End Session</button>
             </div>
 
-            <!-- SAVED PROJECTS AREA -->
+            //Saved Project Id
             <div class="saved-projects-section">
                 <h3>📂 Saved Projects</h3>
                 <div class="projects-scroll" id="projectsList">
@@ -67,7 +67,7 @@
             </div>
         </section>
 
-        <!-- RIGHT HALF - LIVE PREVIEW -->
+       //Right Half showing Output/Live preview
         <section class="preview-section">
             <div class="preview-header">
                 <h3>🖥 Live Preview</h3>
@@ -77,7 +77,7 @@
                 <iframe id="previewFrame" sandbox="allow-scripts"></iframe>
             </div>
             
-            <!-- CONSOLE / ERROR DISPLAY -->
+            //console display
             <div class="console-container">
                 <div class="console-header">
                     <span>📟 Console</span>
@@ -93,3 +93,4 @@
     <script src="game2.js"></script>
 </body>
 </html>
+
