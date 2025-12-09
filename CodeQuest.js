@@ -1,17 +1,11 @@
-// ============================================
-// STATE MANAGEMENT
-// ============================================
-
+//tracking changes in values over time
 let currentLevel = 1;
 let currentXP = 0;
 let requiredXP = 100;
 let currentLang = 'html';
 let projects = [];
 
-// ============================================
-// DOM ELEMENTS
-// ============================================
-
+//Document object model(DOM) elements showing everything in tree structure 
 const htmlEditor = document.getElementById('htmlEditor');
 const cssEditor = document.getElementById('cssEditor');
 const jsEditor = document.getElementById('jsEditor');
@@ -34,10 +28,7 @@ const requiredXPDisplay = document.getElementById('requiredXP');
 const xpBar = document.getElementById('xpBar');
 const projectsList = document.getElementById('projectsList');
 
-// ============================================
-// INITIALIZATION - Load saved data from localStorage
-// ============================================
-
+//starting program with already saved data
 function init() {
     loadProgress();
     loadProjects();
@@ -71,10 +62,7 @@ function saveProjects() {
     localStorage.setItem('codequest_projects', JSON.stringify(projects));
 }
 
-// ============================================
-// TAB SWITCHING - HTML / CSS / JS
-// ============================================
-
+//switching tabs between html,css,javascript
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const lang = tab.getAttribute('data-lang');
@@ -85,28 +73,25 @@ tabs.forEach(tab => {
 function switchTab(lang) {
     currentLang = lang;
     
-    // Update tab styles
+    // Updating tab styles
     tabs.forEach(t => t.classList.remove('active'));
     document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
     
-    // Update editor visibility
+    // Updating editor visibility
     editors.forEach(e => e.classList.remove('active'));
     document.getElementById(`${lang}Editor`).classList.add('active');
 }
 
-// ============================================
-// RUN CODE - Execute and award XP
-// ============================================
-
+//running code - on successful running give XP
 runBtn.addEventListener('click', () => {
     const html = htmlEditor.value;
     const css = cssEditor.value;
     const js = jsEditor.value;
     
-    // Clear console
+    // Clearing console
     consoleOutput.innerHTML = '<p class="console-info">Running code...</p>';
     
-    // Build complete HTML document
+    // Building complete HTML document
     const fullCode = `
         <!DOCTYPE html>
         <html>
@@ -158,14 +143,14 @@ runBtn.addEventListener('click', () => {
         </html>
     `;
     
-    // Inject into iframe
+    // Injecting into iframe
     const iframe = previewFrame;
     iframe.srcdoc = fullCode;
     
-    // Award XP if code executes without errors
+    // Award XP on successful execution of code without errors
     let hasError = false;
     
-    // Listen for console messages from iframe
+    // Listening to console messages from iframe
     window.addEventListener('message', (event) => {
         if (event.data.type === 'error') {
             hasError = true;
@@ -188,10 +173,7 @@ runBtn.addEventListener('click', () => {
     }, 500);
 });
 
-// ============================================
-// CONSOLE OUTPUT
-// ============================================
-
+//outputs
 function addConsoleMessage(message, type) {
     const p = document.createElement('p');
     p.className = `console-${type}`;
@@ -204,14 +186,12 @@ clearConsoleBtn.addEventListener('click', () => {
     consoleOutput.innerHTML = '<p class="console-info">Console cleared.</p>';
 });
 
-// ============================================
-// XP & LEVELING SYSTEM
-// ============================================
+//XP - Leveling System
 
 function addXP(amount) {
     currentXP += amount;
     
-    // Check for level up
+    // Checking for level up
     while (currentXP >= requiredXP) {
         currentXP -= requiredXP;
         currentLevel++;
@@ -236,10 +216,7 @@ function updateUI() {
     xpBar.style.width = percentage + '%';
 }
 
-// ============================================
-// CLEAR BUTTON - Clear active editor
-// ============================================
-
+//clear button to clear currently written code and output 
 clearBtn.addEventListener('click', () => {
     const activeEditor = document.querySelector('.code-editor.active');
     if (activeEditor) {
@@ -248,10 +225,7 @@ clearBtn.addEventListener('click', () => {
     }
 });
 
-// ============================================
-// BEAUTIFY CODE - Simple formatting
-// ============================================
-
+//beautify button to make text arrangement more better
 beautifyBtn.addEventListener('click', () => {
     const activeEditor = document.querySelector('.code-editor.active');
     if (!activeEditor || !activeEditor.value.trim()) {
@@ -273,7 +247,7 @@ beautifyBtn.addEventListener('click', () => {
     addConsoleMessage(`${currentLang.toUpperCase()} code beautified.`, 'log');
 });
 
-// Simple HTML beautifier
+//HTML beautifier
 function beautifyHTML(html) {
     let formatted = '';
     let indent = 0;
@@ -288,7 +262,7 @@ function beautifyHTML(html) {
     return formatted.substring(1, formatted.length - 2);
 }
 
-// Simple CSS beautifier
+//CSS beautifier
 function beautifyCSS(css) {
     return css
         .replace(/\s*{\s*/g, ' {\n  ')
@@ -296,7 +270,7 @@ function beautifyCSS(css) {
         .replace(/\s*}\s*/g, '\n}\n\n');
 }
 
-// Simple JS beautifier
+//JS beautifier
 function beautifyJS(js) {
     return js
         .replace(/{\s*/g, ' {\n  ')
@@ -304,10 +278,7 @@ function beautifyJS(js) {
         .replace(/}\s*/g, '\n}\n');
 }
 
-// ============================================
-// SAVE PROJECT
-// ============================================
-
+//saving project
 saveBtn.addEventListener('click', () => {
     const html = htmlEditor.value;
     const css = cssEditor.value;
@@ -336,10 +307,7 @@ saveBtn.addEventListener('click', () => {
     addConsoleMessage(`Project "${projectName}" saved successfully!`, 'log');
 });
 
-// ============================================
-// RENDER SAVED PROJECTS
-// ============================================
-
+//show saved projects on screen
 function renderProjects() {
     if (projects.length === 0) {
         projectsList.innerHTML = '<p class="no-projects">No saved projects yet. Click Save to create one!</p>';
@@ -365,7 +333,7 @@ function renderProjects() {
     });
 }
 
-// Load project into editors
+// Loading project into editors
 function loadProject(id) {
     const project = projects.find(p => p.id === id);
     if (!project) return;
@@ -377,7 +345,7 @@ function loadProject(id) {
     addConsoleMessage(`Project "${project.name}" loaded.`, 'log');
 }
 
-// Delete project
+// Deleting project
 function deleteProject(id) {
     if (!confirm('Delete this project?')) return;
     
@@ -387,10 +355,7 @@ function deleteProject(id) {
     addConsoleMessage('Project deleted.', 'log');
 }
 
-// ============================================
-// END SESSION - Reset everything
-// ============================================
-
+//End Session - resets everything
 endSessionBtn.addEventListener('click', () => {
     if (!confirm('End session? This will reset your XP and level.')) return;
     
@@ -411,14 +376,12 @@ endSessionBtn.addEventListener('click', () => {
     consoleOutput.innerHTML = '<p class="console-info">Session ended. Progress reset.</p>';
 });
 
-// Clear preview frame
+// Clearing preview frame
 clearPreviewBtn.addEventListener('click', () => {
     previewFrame.srcdoc = '';
     addConsoleMessage('Preview cleared.', 'log');
 });
 
-// ============================================
-// START APPLICATION
-// ============================================
-
+//starting application
 init();
+
